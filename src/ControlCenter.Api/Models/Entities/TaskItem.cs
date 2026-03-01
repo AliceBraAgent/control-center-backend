@@ -5,7 +5,7 @@ public class TaskItem
     public Guid Id { get; set; }
     public string Title { get; set; } = string.Empty;
     public string? Description { get; set; }
-    public TaskItemStatus Status { get; set; } = TaskItemStatus.Open;
+    public TaskItemStatus Status { get; set; } = TaskItemStatus.Idea;
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
 
@@ -18,8 +18,12 @@ public class TaskItem
 
 public enum TaskItemStatus
 {
-    Open,
+    Idea,
+    Refinement,
+    Requirement,
+    Concept,
     InProgress,
+    Review,
     Done,
     Cancelled
 }

@@ -11,7 +11,7 @@ public class SpaceRelationConfiguration : IEntityTypeConfiguration<SpaceRelation
         builder.ToTable("space_relations");
 
         builder.HasKey(r => r.Id);
-        builder.Property(r => r.Id).HasDefaultValueSql("gen_random_uuid()");
+        builder.Property(r => r.Id).ValueGeneratedOnAdd();
 
         builder.Property(r => r.RelationType).HasMaxLength(100).IsRequired();
 

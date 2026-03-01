@@ -11,7 +11,7 @@ public class TaskItemConfiguration : IEntityTypeConfiguration<TaskItem>
         builder.ToTable("tasks");
 
         builder.HasKey(t => t.Id);
-        builder.Property(t => t.Id).HasDefaultValueSql("gen_random_uuid()");
+        builder.Property(t => t.Id).ValueGeneratedOnAdd();
 
         builder.Property(t => t.Title).HasMaxLength(300).IsRequired();
         builder.Property(t => t.Description).HasMaxLength(5000);

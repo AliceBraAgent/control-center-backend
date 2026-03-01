@@ -11,7 +11,7 @@ public class DocumentConfiguration : IEntityTypeConfiguration<Document>
         builder.ToTable("documents");
 
         builder.HasKey(d => d.Id);
-        builder.Property(d => d.Id).HasDefaultValueSql("gen_random_uuid()");
+        builder.Property(d => d.Id).ValueGeneratedOnAdd();
 
         builder.Property(d => d.Title).HasMaxLength(500).IsRequired();
         builder.Property(d => d.Slug).HasMaxLength(500).IsRequired();

@@ -11,7 +11,7 @@ public class SpaceConfiguration : IEntityTypeConfiguration<Space>
         builder.ToTable("spaces");
 
         builder.HasKey(s => s.Id);
-        builder.Property(s => s.Id).HasDefaultValueSql("gen_random_uuid()");
+        builder.Property(s => s.Id).ValueGeneratedOnAdd();
 
         builder.Property(s => s.Name).HasMaxLength(200).IsRequired();
         builder.Property(s => s.Description).HasMaxLength(2000);
