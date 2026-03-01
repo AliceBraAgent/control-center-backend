@@ -11,6 +11,8 @@ public class ApplicationDbContext : DbContext
     }
 
     public DbSet<Space> Spaces => Set<Space>();
+    public DbSet<SpaceRelation> SpaceRelations => Set<SpaceRelation>();
+    public DbSet<Document> Documents => Set<Document>();
     public DbSet<TaskItem> Tasks => Set<TaskItem>();
     public DbSet<User> Users => Set<User>();
 
@@ -39,11 +41,11 @@ public class ApplicationDbContext : DbContext
 
         foreach (var entry in entries)
         {
-            if (entry.Property("UpdatedAt") is { } updatedAt)
-                updatedAt.CurrentValue = DateTime.UtcNow;
+            if (entry.Metadata.FindProperty("UpdatedAt") is not null)
+                entry.Property("UpdatedAt").CurrentValue = DateTime.UtcNow;
 
-            if (entry.State == EntityState.Added && entry.Property("CreatedAt") is { } createdAt)
-                createdAt.CurrentValue = DateTime.UtcNow;
+            if (entry.State == EntityState.Added && entry.Metadata.FindProperty("CreatedAt") is not null)
+                entry.Property("CreatedAt").CurrentValue = DateTime.UtcNow;
         }
     }
 }
