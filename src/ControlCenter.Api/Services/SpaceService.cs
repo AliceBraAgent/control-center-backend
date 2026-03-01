@@ -59,6 +59,19 @@ public class SpaceService(ApplicationDbContext db) : ISpaceService
                 d.CreatedAt, d.UpdatedAt, d.CreatedBy, d.UpdatedBy))
             .ToList();
 
+        var relations = await db.SpaceRelations
+            .AsNoTracking()
+            .Where(r => r.SourceSpaceId == id || r.TargetSpaceId == id)
+            .Select(r => new SpaceRelationDto(
+                r.Id,
+                r.SourceSpaceId, r.SourceSpace.Name,
+                r.TargetSpaceId, r.TargetSpace.Name,
+                r.RelationType,
+                r.CreatedAt))
+            .ToListAsync();
+
+        var breadcrumbs = (await GetPathAsync(id)).ToList();
+
         return new SpaceDetailDto(
             space.Id, space.Name, space.Description,
             space.ParentSpaceId,
@@ -66,7 +79,8 @@ public class SpaceService(ApplicationDbContext db) : ISpaceService
             space.Children.Count,
             space.Documents.Count,
             space.CreatedAt, space.UpdatedAt,
-            children, documents);
+            children, documents,
+            relations, breadcrumbs);
     }
 
     public async Task<SpaceDto> CreateAsync(CreateSpaceRequest request)

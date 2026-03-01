@@ -22,7 +22,9 @@ public record SpaceDetailDto(
     DateTime CreatedAt,
     DateTime UpdatedAt,
     List<SpaceDto> Children,
-    List<DocumentDto> Documents);
+    List<DocumentDto> Documents,
+    List<SpaceRelationDto> Relations,
+    List<SpaceBreadcrumbDto> Breadcrumbs);
 
 public record SpaceBreadcrumbDto(Guid Id, string Name);
 
