@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/RoutingV3.Api/RoutingV3.Api.csproj" />
+    <Project Path="src/RoutingV3.Domain/RoutingV3.Domain.csproj" />
+    <Project Path="src/RoutingV3.Engine/RoutingV3.Engine.csproj" />
+    <Project Path="src/RoutingV3.Infrastructure/RoutingV3.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/RoutingV3.Engine.Tests/RoutingV3.Engine.Tests.csproj" />
+  </Folder>
+</Solution>

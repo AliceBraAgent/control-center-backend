@@ -1,0 +1,6 @@
+@RoutingV3.Api_HostAddress = http://localhost:5148
+
+GET {{RoutingV3.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
